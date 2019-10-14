@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../mainPage/head %>
+</head>
+<body class="container">
+
+<div class="jumbotron">
+    <h1>Workshops</h1>
+    <p>here is the list of workshop</p>
+</div>
+
+<a type="button" href="/workshop" class="btn btn-success btn-lg">Create new workshop</a>
+
+<ul class="list-unstyled"></ul>
+<% workshops.forEach(function(workshop) { %>
+    <li class="media my-4">
+        
+          
+          <div class="media-body">
+              <h5 class="mt-0 mb-1"><%= workshop.name %></h5>
+              <%= workshop.description %>
+              </div> 
+          <form action="/remove-workshop" method="post">
+            <input type="text" name="name" class="form-control" id="name" value="<%= workshop.name %>" hidden>
+            <button type="submit" class="btn btn-primary">Delete</button>
+          </form>    
+          <a type="button" href="/update-workshop?name=<%= workshop.name %>" class="btn btn-warning">Update</a>
+    </li>
+<% }); %>
+</ul>
+
+<footer>
+    <% include ../mainPage/footer %>
+</footer>
+
+</body>
+</html>
